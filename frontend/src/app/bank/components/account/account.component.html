@@ -1,0 +1,28 @@
+<form [formGroup]="accountForm" (ngSubmit)="onSubmit()">
+    <div>
+      <label>Account ID:</label>
+      <input type="number" formControlName="accountId" />
+      <div *ngIf="accountForm.get('accountId')?.invalid && accountForm.get('accountId')?.touched">
+        Account ID is required and must be greater than 0.
+      </div>
+    </div>
+   
+    <div>
+      <label>Customer ID:</label>
+      <input type="number" formControlName="customerId" />
+      <div *ngIf="accountForm.get('customerId')?.invalid && accountForm.get('customerId')?.touched">
+        Customer ID is required.
+      </div>
+    </div>
+   
+    <div>
+      <label>Balance:</label>
+      <input type="number" formControlName="balance" />
+      <div *ngIf="accountForm.get('balance')?.invalid && accountForm.get('balance')?.touched">
+        Balance cannot be negative.
+      </div>
+    </div>
+   
+    <button type="submit" [disabled]="accountForm.invalid">Submit</button>
+  </form>
+   

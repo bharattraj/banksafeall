@@ -1,0 +1,63 @@
+<form [formGroup]="customerForm" (ngSubmit)="onSubmit()">
+  <div>
+    <label for="name">Name:</label>
+    <input
+      id="name"
+      name="name"
+      type="text"
+      formControlName="name"
+    />
+    <div class="error" *ngIf="customerForm.get('name')?.touched && customerForm.get('name')?.invalid">
+      <span *ngIf="customerForm.get('name')?.errors?.['required']">Name is required.</span>
+      <span *ngIf="customerForm.get('name')?.errors?.['specialChars']">Only letters and spaces are allowed.</span>
+    </div>
+  </div>
+ 
+  <div>
+    <label for="email">Email:</label>
+    <input
+      id="email"
+      name="email"
+      type="email"
+      formControlName="email"
+    />
+    <div class="error" *ngIf="customerForm.get('email')?.touched && customerForm.get('email')?.invalid">
+      <span *ngIf="customerForm.get('email')?.errors?.['required']">Email is required.</span>
+      <span *ngIf="customerForm.get('email')?.errors?.['email']">Enter a valid email address.</span>
+    </div>
+  </div>
+ 
+  <div>
+    <label for="username">Username:</label>
+    <input
+      id="username"
+      name="username"
+      type="text"
+      formControlName="username"
+    />
+    <div class="error" *ngIf="customerForm.get('username')?.touched && customerForm.get('username')?.invalid">
+      <span *ngIf="customerForm.get('username')?.errors?.['required']">Username is required.</span>
+      <span *ngIf="customerForm.get('username')?.errors?.['minlength']">Minimum 4 characters.</span>
+    </div>
+  </div>
+ 
+  <div>
+    <label for="password">Password:</label>
+    <input
+      id="password"
+      name="password"
+      type="password"
+      formControlName="password"
+    />
+    <div class="error" *ngIf="customerForm.get('password')?.touched && customerForm.get('password')?.invalid">
+      <span *ngIf="customerForm.get('password')?.errors?.['required']">Password is required.</span>
+      <span *ngIf="customerForm.get('password')?.errors?.['minlength']">Minimum 6 characters.</span>
+    </div>
+  </div>
+ 
+  <button type="submit" [disabled]="customerForm.invalid">Submit</button>
+ 
+  <p class="success" *ngIf="customerSuccess">{{ customerSuccess }}</p>
+  <p class="error" *ngIf="customerError">{{ customerError }}</p>
+</form>
+ 
